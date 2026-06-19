@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerNav, social, site } from "@/lib/site";
+import { Spark } from "@/components/ui/graphics";
 
 export function Footer() {
   return (
@@ -56,10 +57,14 @@ export function Footer() {
         </div>
 
         {/* Oversized wordmark */}
-        <div className="mt-24 select-none">
-          <div className="text-mega font-display font-light leading-[0.8] text-chrome opacity-90">
-            VIDA NOVA
-          </div>
+        <div className="mt-24 flex select-none items-center gap-[0.1em] leading-[0.8]">
+          <span className="text-mega font-display font-light text-chrome opacity-90">
+            VIDA
+          </span>
+          <Spark size={48} className="shrink-0 text-ash" />
+          <span className="text-mega font-display font-light text-outline text-outline-ash">
+            NOVA
+          </span>
         </div>
 
         <div className="hairline mt-10 flex flex-col items-start justify-between gap-6 pt-8 sm:flex-row sm:items-center">

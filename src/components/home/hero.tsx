@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Seal } from "@/components/ui/seal";
+import { Spark } from "@/components/ui/graphics";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const word = {
@@ -66,6 +68,32 @@ export function Hero() {
         >
           Spring / Summer 26
         </motion.span>
+      </motion.div>
+
+      {/* Rotating seal + graphic marks */}
+      <motion.div
+        style={{ opacity }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 2, duration: 1, ease: EASE }}
+        className="absolute right-[6%] top-[34%] hidden text-bone md:block"
+      >
+        <Seal size={132} />
+      </motion.div>
+      <motion.div
+        style={{ opacity }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.4, duration: 1 }}
+      >
+        <Spark
+          size={22}
+          className="absolute left-[10%] top-[42%] hidden text-bone/70 lg:block"
+        />
+        <Spark
+          size={14}
+          className="absolute right-[28%] top-[24%] hidden text-bone/50 lg:block"
+        />
       </motion.div>
 
       {/* Headline */}

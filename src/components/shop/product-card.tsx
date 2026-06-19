@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { type Product } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
+import { Spark } from "@/components/ui/graphics";
 
 export function ProductCard({
   product,
@@ -52,13 +53,23 @@ export function ProductCard({
 
       <div className="mt-4 flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-sm font-medium leading-tight">{product.name}</h3>
+          <h3 className="flex items-center gap-1.5 text-sm font-medium leading-tight">
+            {product.name}
+            <Spark
+              size={11}
+              className="shrink-0 text-ash transition-colors group-hover:text-bone"
+            />
+          </h3>
           <p className="mt-1 text-xs text-ash">{product.colorway}</p>
         </div>
         <span className="font-mono text-sm tabular-nums">
           {formatPrice(product.price, product.currency)}
         </span>
       </div>
+      <p className="mt-2 font-mono text-[0.6rem] tracking-[0.25em] text-ash/60">
+        VN—{product.slug.slice(0, 3).toUpperCase()}—
+        {String(product.price).padStart(4, "0")}
+      </p>
     </Link>
   );
 }

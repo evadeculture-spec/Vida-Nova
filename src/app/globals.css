@@ -202,6 +202,67 @@
 }
 
 /* ============================================================
+   GRAPHIC LANGUAGE — streetwear utilities
+   ============================================================ */
+@layer utilities {
+  /* Outline / stroked display type */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-bone);
+  }
+  .text-outline-ash {
+    -webkit-text-stroke: 1px var(--color-ash);
+  }
+  @supports (-webkit-text-stroke: 1px white) {
+    .text-outline-fill {
+      color: transparent;
+    }
+  }
+
+  /* Slow spin for seals/badges */
+  .spin-slow {
+    animation: spin360 22s linear infinite;
+  }
+  .spin-slow-rev {
+    animation: spin360 28s linear infinite reverse;
+  }
+
+  /* Duotone / high-contrast editorial image treatment */
+  .img-duotone {
+    filter: grayscale(1) contrast(1.08) brightness(0.92);
+  }
+
+  /* Registration crosshair corner marks */
+  .crosshairs::before,
+  .crosshairs::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--color-line-strong);
+    pointer-events: none;
+  }
+  .crosshairs::before {
+    top: 12px;
+    left: 12px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .crosshairs::after {
+    bottom: 12px;
+    right: 12px;
+    border-left: 0;
+    border-top: 0;
+  }
+}
+
+@keyframes spin360 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
    FILM GRAIN
    ============================================================ */
 .grain {

@@ -6,6 +6,8 @@ import { getProduct, products } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shop/product-card";
+import { Seal } from "@/components/ui/seal";
+import { Barcode } from "@/components/ui/graphics";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -163,6 +165,25 @@ export default async function ProductPage({
                 2–4 days. Free returns within 30 days. Every order ships in
                 signature Vida Nova packaging.
               </p>
+            </div>
+
+            {/* Authenticity strip */}
+            <div className="mt-8 flex items-center justify-between gap-4 rounded-[var(--radius-sm)] border border-line p-5">
+              <Barcode
+                serial={`VN-${product.slug.slice(0, 4).toUpperCase()}-26`}
+                width={110}
+              />
+              <div className="hidden flex-col items-start gap-1 border-l border-line pl-4 sm:flex">
+                <span className="eyebrow text-[0.6rem]">Numbered</span>
+                <span className="font-mono text-sm">No. 047 / 200</span>
+              </div>
+              <div className="shrink-0 text-bone">
+                <Seal
+                  size={84}
+                  text="AUTHENTIC · VIDA NOVA · "
+                  glyph="✸"
+                />
+              </div>
             </div>
 
             {/* Details accordion (static, expanded) */}
