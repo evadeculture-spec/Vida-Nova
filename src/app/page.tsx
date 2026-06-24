@@ -3,6 +3,7 @@ import { Manifesto } from "@/components/home/manifesto";
 import { LatestDrop } from "@/components/home/latest-drop";
 import { CollectionsScene } from "@/components/home/collections-scene";
 import { Lookbook } from "@/components/home/lookbook";
+import { Symbols } from "@/components/home/symbols";
 import { Community } from "@/components/home/community";
 import { Philosophy } from "@/components/home/philosophy";
 import { Membership } from "@/components/home/membership";
@@ -29,6 +30,7 @@ export default function Home() {
       <LatestDrop />
       <CollectionsScene />
       <Lookbook />
+      <Symbols />
       <Philosophy />
       <Community />
       <Membership />

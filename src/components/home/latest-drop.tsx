@@ -1,36 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal, RevealText } from "@/components/ui/reveal";
-
-/** Next drop: 9 days out from first render — stable enough for a showcase. */
-function useCountdown(target: number) {
-  const [time, setTime] = useState<null | {
-    d: number;
-    h: number;
-    m: number;
-    s: number;
-  }>(null);
-
-  useEffect(() => {
-    const tick = () => {
-      const diff = Math.max(0, target - Date.now());
-      setTime({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff / 3600000) % 24),
-        m: Math.floor((diff / 60000) % 60),
-        s: Math.floor((diff / 1000) % 60),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [target]);
-
-  return time;
-}
+import { useCountdown } from "@/lib/use-countdown";
 
 function Unit({ value, label }: { value: number; label: string }) {
   return (
