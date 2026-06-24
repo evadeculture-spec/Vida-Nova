@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, products } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shop/product-card";
+import { ProductGallery } from "@/components/shop/product-gallery";
 import { Seal } from "@/components/ui/seal";
 import { Barcode } from "@/components/ui/graphics";
 
@@ -87,30 +87,12 @@ export default async function ProductPage({
 
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
           {/* Gallery */}
-          <div className="space-y-4">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-md)] bg-coal">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                priority
-                sizes="(max-width:1024px) 100vw, 55vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="relative hidden aspect-[16/10] overflow-hidden rounded-[var(--radius-md)] bg-coal sm:block">
-              <Image
-                src={product.image}
-                alt={`${product.name} detail`}
-                fill
-                sizes="(max-width:1024px) 100vw, 55vw"
-                className="scale-[1.6] object-cover"
-              />
-            </div>
+          <div className="lg:sticky lg:top-28 lg:h-fit">
+            <ProductGallery image={product.image} name={product.name} />
           </div>
 
-          {/* Info — sticky */}
-          <div className="lg:sticky lg:top-28 lg:h-fit">
+          {/* Info */}
+          <div>
             <p className="eyebrow mb-4">{product.collection}</p>
             <h1 className="text-h2 font-display font-light leading-[0.95]">
               {product.name}

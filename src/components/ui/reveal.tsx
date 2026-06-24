@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ElementType, type ReactNode } from "react";
+import { createElement, useRef, type ElementType, type ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -26,9 +26,12 @@ export function RevealText({
   const inView = useInView(ref, { once: true, margin: "-12% 0px" });
   const words = children.split(" ");
 
-  return (
-    <Tag ref={ref} className={className} aria-label={children}>
-      {words.map((word, i) => (
+  // createElement keeps the polymorphic `as` tag loosely typed (avoids the
+  // "children expects never" union error). The ref lives on a plain wrapper.
+  const content = createElement(
+    Tag,
+    { className, "aria-label": children },
+    words.map((word, i) => (
         <span
           key={i}
           aria-hidden
@@ -49,9 +52,10 @@ export function RevealText({
             {i < words.length - 1 ? " " : ""}
           </motion.span>
         </span>
-      ))}
-    </Tag>
+      )),
   );
+
+  return <div ref={ref}>{content}</div>;
 }
 
 /**
